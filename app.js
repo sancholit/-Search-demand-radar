@@ -2,8 +2,12 @@ const D=window.RADAR_DATA,$=s=>document.querySelector(s),$$=s=>[...document.quer
 const fmt=n=>new Intl.NumberFormat("ru-RU",{notation:n>=1e5?"compact":"standard",maximumFractionDigits:1}).format(n);
 const full=n=>new Intl.NumberFormat("ru-RU").format(n);
 const dr=s=>new Intl.DateTimeFormat("ru-RU",{day:"2-digit",month:"long",year:"numeric"}).format(new Date(s+"T00:00:00"));
-$("#date").textContent=dr(D.date);$("#k1").textContent=D.items.length;
-const structural=D.items.filter(x=>x.st==="Наблюдать");$("#k2").textContent=structural.length;$("#k3").textContent=fmt(D.items.reduce((a,x)=>a+x.s,0));
+$("#date").textContent=dr(D.date)+(D.time?" · "+D.time:"");
+$("#k1").textContent=full(D.totalClusters||D.items.length);
+const structural=D.items.filter(x=>x.st==="Наблюдать");
+$("#k2").textContent=structural.length;
+$("#k3").textContent=fmt(D.items.reduce((a,x)=>a+x.s,0));
+if($("#methodNote"))$("#methodNote").innerHTML=`<b>Срез:</b> ${D.notes?.current||""}<br><b>Важно:</b> ${D.notes?.scores||""}`;
 
 function overview(){
  const top=[...D.items].sort((a,b)=>b.s-a.s).slice(0,10),mx=Math.max(...top.map(x=>x.s));
@@ -21,7 +25,7 @@ function filter(){
  $("#body").innerHTML=a.map(x=>`<tr><td><b>${x.q}</b></td><td><span class="badge">${x.c}</span></td><td>${full(x.s)}+</td><td>+${full(x.g)}%</td><td><span class="meter"><b>${x.t}</b><i style="--w:${x.t}%"></i></span></td><td><span class="meter op"><b>${x.o}</b><i style="--w:${x.o}%"></i></span></td><td>${x.e}</td><td><span class="badge ${x.st==="Наблюдать"?"good":"warn"}">${x.st}</span></td></tr>`).join("");
 }
 function ai(){
- $("#aicards").innerHTML=D.ai.filter(x=>!(x.p==="Яндекс"&&(x.m.includes("Месячная аудитория")||x.m.includes("Доля поисковых")))).map(x=>`<article><div class="eyebrow">${x.p} · ${x.c}</div><strong>${String(x.v).replace(".",",")} ${x.u}</strong><h3>${x.m}</h3><p>${x.geo} · ${x.per}</p></article>`).join("");
+ $("#aicards").innerHTML=D.ai.filter(x=>!(x.p==="Яндекс"&&(x.m.includes("Месячная аудитория взаимодействующих")||x.m.includes("Доля запросов, на которые")))).map(x=>`<article><div class="eyebrow">${x.p} · ${x.c}</div><strong>${String(x.v).replace(".",",")} ${x.u}</strong><h3>${x.m}</h3><p>${x.geo} · ${x.per}</p>${x.src?`<a href="${x.src}" target="_blank" rel="noreferrer">Источник ↗</a>`:""}</article>`).join("");
 }
 function sources(){
  $("#sourcecards").innerHTML=D.sources.map(x=>`<article><div class="eyebrow">${x.a}</div><h3>${x.n}</h3><p>${x.r}</p><p>${x.h}</p><a href="${x.u}" target="_blank" rel="noreferrer">Открыть источник ↗</a></article>`).join("");
@@ -29,5 +33,5 @@ function sources(){
 function show(id){$$(".view").forEach(x=>x.classList.toggle("active",x.id===id));$$(".nav").forEach(x=>x.classList.toggle("active",x.dataset.view===id));scrollTo({top:0,behavior:"smooth"})}
 $$(".nav").forEach(b=>b.onclick=()=>show(b.dataset.view));$("#openRadar").onclick=()=>show("radar");
 ["#search","#cat","#status","#only"].forEach(s=>$(s).addEventListener("input",filter));
-$$(".period").forEach(b=>b.onclick=()=>{$$(".period").forEach(x=>x.classList.remove("active"));b.classList.add("active");let now=b.dataset.p==="24h";$("#availability").textContent=now?"Данные доступны":"История накапливается / подключается API";$("#availability").style.color=now?"var(--green)":"var(--warn)"});
+$$(".period").forEach(b=>b.onclick=()=>{$$(".period").forEach(x=>x.classList.remove("active"));b.classList.add("active");let now=b.dataset.p==="24h";$("#availability").textContent=now?"Данные доступны":(D.notes?.history||"История накапливается / подключается API");$("#availability").style.color=now?"var(--green)":"var(--warn)"});
 overview();radar();ai();sources();
