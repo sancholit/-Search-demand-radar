@@ -35,24 +35,26 @@
       </div>
 
       <div class="kpis">
-        <article><small>Тренды за 24ч</small><strong id="k1">—</strong><p>Google Trending Now RU</p></article>
-        <article><small>Структурные кандидаты</small><strong id="k2">—</strong><p>Без событийного шума</p></article>
-        <article><small>Минимум поисков</small><strong id="k3">—</strong><p>нижняя оценка за 24ч</p></article>
+        <article><small>Активные тренд-кластеры</small><strong id="k1">—</strong><p>Google Trending Now RU, 24ч</p></article>
+        <article><small>Структурные кандидаты</small><strong id="k2">—</strong><p>среди верхних 25 сигналов</p></article>
+        <article><small>Минимум поисков</small><strong id="k3">—</strong><p>нижняя граница по верхним 25</p></article>
         <article class="accent"><small>Алиса AI в Поиске</small><strong>42%</strong><p>запросов с AI-ответом, Q2'26</p></article>
       </div>
+
+      <div id="methodNote" class="notice"></div>
 
       <div class="grid2">
         <article class="card"><div class="head"><div><small>Сигнал спроса</small><h2>Топ тем за 24 часа</h2></div></div><div id="bars"></div></article>
         <article class="card"><div class="head"><div><small>Приоритет</small><h2>Структурные кандидаты</h2></div><button id="openRadar">Открыть →</button></div><div id="candidates"></div></article>
       </div>
 
-      <article class="card"><div class="head"><div><small>Матрица</small><h2>Trend Score × Opportunity Score</h2></div><span>зелёные точки — структурные кандидаты</span></div><div id="scatter"><label class="y">Trend Score</label><label class="x">Opportunity Score →</label></div></article>
+      <article class="card"><div class="head"><div><small>Матрица</small><h2>Trend Score × Opportunity Score</h2></div><span>аналитический рейтинг · зелёные точки — структурные кандидаты</span></div><div id="scatter"><label class="y">Trend Score</label><label class="x">Opportunity Score →</label></div></article>
     </section>
 
     <section id="radar" class="view">
-      <div class="title"><div class="eyebrow">Главная таблица</div><h2>Радар тем</h2><p>Поиск, фильтры и сортировка по потенциалу.</p></div>
+      <div class="title"><div class="eyebrow">Главная таблица</div><h2>Радар тем</h2><p>Поиск и фильтры. Trend / Opportunity / Eventness — аналитические оценки радара, не официальные метрики поисковиков.</p></div>
       <div class="tools"><input id="search" placeholder="Поиск по теме…"><select id="cat"><option value="">Все категории</option></select><select id="status"><option value="">Все статусы</option><option>Наблюдать</option><option>Событийный/сезонный</option></select><label><input id="only" type="checkbox"> Только структурные</label></div>
-      <div class="table"><table><thead><tr><th>Тема</th><th>Категория</th><th>Поиски 24ч</th><th>Рост</th><th>Trend</th><th>Opportunity</th><th>Eventness</th><th>Статус</th></tr></thead><tbody id="body"></tbody></table></div>
+      <div class="table"><table><thead><tr><th>Тема</th><th>Категория</th><th>Поиски 24ч</th><th>Рост</th><th>Trend*</th><th>Opportunity*</th><th>Eventness*</th><th>Статус</th></tr></thead><tbody id="body"></tbody></table></div>
     </section>
 
     <section id="ai" class="view">
