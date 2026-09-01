@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>Радар поискового спроса — Россия</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand"><b>R</b><span>Search Radar<small>Россия</small></span></div>
+    <nav>
+      <button class="nav active" data-view="overview">Обзор</button>
+      <button class="nav" data-view="radar">Радар тем</button>
+      <button class="nav" data-view="ai">AI-поиск</button>
+      <button class="nav" data-view="sources">Источники</button>
+    </nav>
+    <div class="method"><span>Методология</span><strong>B2</strong><p>Search, AI Search Exposure и AI-native сигналы учитываются раздельно.</p></div>
+  </aside>
+
+  <main>
+    <header>
+      <div><div class="eyebrow">Радар интересов и поискового спроса</div><h1>Что люди ищут сейчас</h1><p>Яндекс + Google · Россия</p></div>
+      <div class="snap"><i></i><span>Снимок данных<strong id="date">—</strong></span></div>
+    </header>
+
+    <section id="overview" class="view active">
+      <div class="periods">
+        <button class="period active" data-p="24h">24 часа</button><button class="period" data-p="7d">7 дней</button>
+        <button class="period" data-p="1m">1 месяц</button><button class="period" data-p="3m">3 месяца</button>
+        <button class="period" data-p="6m">6 месяцев</button><button class="period" data-p="9m">9 месяцев</button>
+        <button class="period" data-p="12m">12 месяцев</button>
+        <span id="availability">Данные доступны</span>
+      </div>
+
+      <div class="kpis">
+        <article><small>Тренды за 24ч</small><strong id="k1">—</strong><p>Google Trending Now RU</p></article>
+        <article><small>Структурные кандидаты</small><strong id="k2">—</strong><p>Без событийного шума</p></article>
+        <article><small>Минимум поисков</small><strong id="k3">—</strong><p>нижняя оценка за 24ч</p></article>
+        <article class="accent"><small>Алиса AI в Поиске</small><strong>42%</strong><p>запросов с AI-ответом, Q2'26</p></article>
+      </div>
+
+      <div class="grid2">
+        <article class="card"><div class="head"><div><small>Сигнал спроса</small><h2>Топ тем за 24 часа</h2></div></div><div id="bars"></div></article>
+        <article class="card"><div class="head"><div><small>Приоритет</small><h2>Структурные кандидаты</h2></div><button id="openRadar">Открыть →</button></div><div id="candidates"></div></article>
+      </div>
+
+      <article class="card"><div class="head"><div><small>Матрица</small><h2>Trend Score × Opportunity Score</h2></div><span>зелёные точки — структурные кандидаты</span></div><div id="scatter"><label class="y">Trend Score</label><label class="x">Opportunity Score →</label></div></article>
+    </section>
+
+    <section id="radar" class="view">
+      <div class="title"><div class="eyebrow">Главная таблица</div><h2>Радар тем</h2><p>Поиск, фильтры и сортировка по потенциалу.</p></div>
+      <div class="tools"><input id="search" placeholder="Поиск по теме…"><select id="cat"><option value="">Все категории</option></select><select id="status"><option value="">Все статусы</option><option>Наблюдать</option><option>Событийный/сезонный</option></select><label><input id="only" type="checkbox"> Только структурные</label></div>
+      <div class="table"><table><thead><tr><th>Тема</th><th>Категория</th><th>Поиски 24ч</th><th>Рост</th><th>Trend</th><th>Opportunity</th><th>Eventness</th><th>Статус</th></tr></thead><tbody id="body"></tbody></table></div>
+    </section>
+
+    <section id="ai" class="view">
+      <div class="title"><div class="eyebrow">Отдельный контур</div><h2>AI-поиск</h2><p>Официальные метрики AI-ответов и AI-диалогов — отдельно от обычного Search.</p></div>
+      <div class="aihero"><article><small>Яндекс · Алиса AI в Поиске</small><strong>42%</strong><p>доля поисковых запросов, на которые Алиса AI даёт ответ</p></article><article><small>Яндекс · месячная аудитория</small><strong>49,5 млн</strong><p>взаимодействуют с ответами Алисы AI под поиском</p></article></div>
+      <div id="aicards" class="cards"></div>
+      <div class="notice"><b>Ограничение:</b> полной публичной статистики промптов Алисы AI / Google AI Mode нет. Такие данные не моделируются как факт.</div>
+    </section>
+
+    <section id="sources" class="view">
+      <div class="title"><div class="eyebrow">Контроль качества</div><h2>Источники и доступность</h2><p>Для каждого слоя фиксируются роль источника и ограничения.</p></div>
+      <div id="sourcecards" class="cards"></div>
+    </section>
+  </main>
+</div>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>
