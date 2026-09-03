@@ -1,0 +1,13 @@
+{
+  "yandex_wordstat": {
+    "status": "not_connected",
+    "market": "RU",
+    "source_type": "official_api",
+    "retrieved_at": null,
+    "message": "Collector prepared. Awaiting Yandex Search API credentials and validation run."
+  },
+  "google": {
+    "status": "deferred",
+    "message": "Google integration intentionally postponed; Yandex-only phase."
+  }
+}
