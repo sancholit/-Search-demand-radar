@@ -1,0 +1,15 @@
+{
+  "market": "RU",
+  "mode": "validation_test",
+  "phrases": [
+    "жильё",
+    "работа",
+    "кредит",
+    "ноутбук",
+    "ремонт"
+  ],
+  "top_num_phrases": 50,
+  "collect_daily_dynamics": true,
+  "collect_regions": false,
+  "devices": ["DEVICE_ALL"]
+}
